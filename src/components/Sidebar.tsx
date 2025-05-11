@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="hidden md:block w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transition-colors">
+    <aside className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transition-colors fixed inset-y-0 left-0 z-50 md:relative md:translate-x-0 md:transform">
       <div className="p-6">
         <h2 className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold">
           Main Menu
