@@ -53,9 +53,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Mobile Toggle Button */}
+      {/* Mobile Toggle Button: only visible on mobile */}
       <button
-        className="fixed top-4 left-4 z-50 md:hidden bg-white dark:bg-gray-900 p-2 rounded-full shadow border border-gray-200 dark:border-gray-700"
+        className="fixed top-4 left-4 z-50 bg-white dark:bg-gray-900 p-2 rounded-full shadow border border-gray-200 dark:border-gray-700 md:hidden"
         onClick={() => setOpen(true)}
         aria-label="Open sidebar"
         style={{ display: open ? 'none' : 'block' }}
@@ -68,12 +68,12 @@ const Sidebar: React.FC = () => {
         className={`
           fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transition-transform duration-200
           ${open ? 'translate-x-0' : '-translate-x-full'}
-          md:translate-x-0 md:relative md:block
+          md:hidden
         `}
         style={{ boxShadow: open ? '0 2px 16px rgba(0,0,0,0.2)' : undefined }}
       >
         {/* Close button for mobile */}
-        <div className="md:hidden flex justify-end p-4">
+        <div className="flex justify-end p-4">
           <button onClick={() => setOpen(false)} aria-label="Close sidebar">
             <X size={28} className="text-gray-500 dark:text-gray-400" />
           </button>
@@ -89,6 +89,11 @@ const Sidebar: React.FC = () => {
           aria-label="Close sidebar"
         />
       )}
+
+      {/* Sidebar for desktop: always visible, no toggle */}
+      <aside className="hidden md:block w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transition-colors h-screen fixed md:relative z-10">
+        {sidebarContent}
+      </aside>
     </>
   );
 };
