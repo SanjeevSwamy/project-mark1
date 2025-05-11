@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UploadCloud, X, FilePlus, FileCheck } from 'lucide-react';
 
-const API_URL = "http://192.168.1.11:8000/predict"; // Change if deployed
+const API_URL = const API_URL = "https://820b-101-0-62-103.ngrok-free.app/predict";
+
 
 const ScanUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
