@@ -29,7 +29,7 @@ return (
 <button className="block md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
 </button>
-<Link to="/" className="flex items-center space-x-2 ml-2">
+<Link to="/" className="flex items-center space-x-2 ml-8">
 <Heart className="h-8 w-8 text-cyan-700 dark:text-cyan-400" />
 <span className="text-xl font-bold text-cyan-800 dark:text-cyan-200">Health-It</span>
 </Link>
