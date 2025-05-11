@@ -26,14 +26,15 @@ return (
 <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 md:px-6 py-3">
 <div className="flex justify-between items-center max-w-7xl mx-auto">
 <div className="flex items-center space-x-2">
-<button className="block md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-{mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-</button>
-<Link to="/" className="flex items-center space-x-2 ml-8">
-<Heart className="h-8 w-8 text-cyan-700 dark:text-cyan-400" />
-<span className="text-xl font-bold text-cyan-800 dark:text-cyan-200">Health-It</span>
-</Link>
+  <button className="block md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+  </button>
+  <Link to="/" className="flex items-center space-x-2 ml-2">
+    <Heart className="h-8 w-8 text-cyan-700 dark:text-cyan-400" />
+    <span className="text-xl font-bold text-cyan-800 dark:text-cyan-200">Health-It</span>
+  </Link>
 </div>
+
 
 <div className="flex items-center space-x-4">
 {/* Theme toggle */}
