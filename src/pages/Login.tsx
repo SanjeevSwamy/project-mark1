@@ -38,7 +38,7 @@ const Login: React.FC = () => {
           <Heart className="h-12 w-12 text-cyan-700" />
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          AI-Vitalis
+          HealthIt
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Sign in to access cardiac analysis tools
