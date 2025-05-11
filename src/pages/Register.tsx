@@ -42,7 +42,7 @@ const Register: React.FC = () => {
           Create your account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Join AI-Vitalis to access advanced cardiac analysis
+          Join HealthIt to access advanced cardiac analysis
         </p>
       </div>
 
