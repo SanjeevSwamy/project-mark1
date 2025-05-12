@@ -16,27 +16,26 @@ const ScanResults: React.FC = () => {
   }, [scanId]);
 
   if (!result) {
-  return (
-    <div className="text-center py-16">
-      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">No Scan Result Available</h3>
-      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        Upload a scan to study your heart and get instant AI-powered results and recommendations.
-      </p>
-      <div className="mt-6 flex flex-col items-center space-y-2">
-        <Link
-          to="/upload"
-          className="px-6 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 font-medium transition"
-        >
-          Upload Scan
-        </Link>
-        <Link to="/" className="text-cyan-600 hover:text-cyan-500 text-sm">
-          Return to Dashboard
-        </Link>
+    return (
+      <div className="text-center py-16">
+        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">No Scan Result Available</h3>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          Upload a scan to study your heart and get instant AI-powered results and recommendations.
+        </p>
+        <div className="mt-6 flex flex-col items-center space-y-2">
+          <Link
+            to="/upload"
+            className="px-6 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 font-medium transition"
+          >
+            Upload Scan
+          </Link>
+          <Link to="/" className="text-cyan-600 hover:text-cyan-500 text-sm">
+            Return to Dashboard
+          </Link>
+        </div>
       </div>
-    </div>
-  );
-}
-
+    );
+  }
 
   const isAbnormal = result.class_name === 'abnormal';
 
@@ -56,11 +55,32 @@ const ScanResults: React.FC = () => {
         </span>
       </div>
 
-      {/* Explanation */}
+      {/* Explanation and Reasons */}
       {result.explanation && (
         <div className="mb-6">
           <h2 className="text-lg font-medium mb-1">AI Explanation</h2>
           <p className="text-gray-700 dark:text-gray-200">{result.explanation}</p>
+          {/* List reasons if present */}
+          {Array.isArray(result.reasons) && result.reasons.length > 0 && (
+            <div className="mt-3">
+              <h3 className="text-md font-semibold mb-2">
+                {isAbnormal ? "Why is this scan marked abnormal?" : "Why is this scan marked healthy?"}
+              </h3>
+              <ul className="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
+                {result.reasons.map((reason: string, idx: number) => (
+                  <li key={idx}>{reason}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {/* Fallback if no reasons */}
+          {(!result.reasons || result.reasons.length === 0) && (
+            <div className="mt-3 text-gray-500 dark:text-gray-400 text-sm italic">
+              {isAbnormal
+                ? "Detected features or patterns in the scan suggest possible abnormality. Please see findings below."
+                : "No significant abnormalities detected in the scan images."}
+            </div>
+          )}
         </div>
       )}
 
