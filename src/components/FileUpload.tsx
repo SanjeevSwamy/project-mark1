@@ -17,15 +17,17 @@ const FileUpload: React.FC = () => {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
+    // Get user info (optional, for folder structure)
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      setUserId(user?.id || null);
+      setUserId(user?.id || "public");
     };
     getUser();
   }, []);
 
   useEffect(() => {
     if (userId) fetchFiles();
+    // eslint-disable-next-line
   }, [userId]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +51,9 @@ const FileUpload: React.FC = () => {
 
     setLoading(true);
     try {
+      // You can use just the filename, or keep per-user folders if you want
       const filePath = `${userId}/${Date.now()}_${file.name}`;
-      
+
       const { data, error: uploadError } = await supabase.storage
         .from(BUCKET_NAME)
         .upload(filePath, file);
@@ -63,19 +66,18 @@ const FileUpload: React.FC = () => {
 
       setUploadUrl(urlData.publicUrl);
       fetchFiles();
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchFiles = async () => {    
+  const fetchFiles = async () => {
     try {
       const { data, error } = await supabase.storage
         .from(BUCKET_NAME)
-        .list(`${userId}`);
-
+        .list(userId || "public");
       if (!error) setUploadedFiles(data || []);
     } catch (err) {
       setError("Failed to fetch files");
