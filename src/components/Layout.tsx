@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import ChatBot from './ChatBot'; // <-- Match file name exactly!
+import ChatBot from './ChatBot';
 import { useAuth } from '../context/AuthContext';
 
 const Layout: React.FC = () => {
@@ -27,10 +27,12 @@ const Layout: React.FC = () => {
         <Sidebar />
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
           <div className="max-w-7xl mx-auto">
+            {/* Routed pages (like FileUpload) will render here */}
             <Outlet />
           </div>
         </main>
       </div>
+      {/* Floating ChatBot appears on all pages */}
       <ChatBot />
     </div>
   );
