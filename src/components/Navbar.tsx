@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center space-x-2">
           <Link to="/" className="flex items-center space-x-2">
             <Heart className="h-8 w-8 text-cyan-700 dark:text-cyan-400" />
-            <span className="text-xl font-bold text-cyan-800 dark:text-cyan-200">Health-It</span>
+            <span className="text-xl font-bold text-cyan-800 dark:text-cyan-200">Hea-It</span>
           </Link>
         </div>
 
