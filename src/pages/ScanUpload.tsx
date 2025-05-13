@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UploadCloud, X, FilePlus, FileCheck } from 'lucide-react';
 
-const API_URL = "https://4bd4-2401-4900-22e1-1f73-60a6-cbf3-b7a4-bdd8.ngrok-free.app/predict";
+const API_URL = "https://5896-2401-4900-22e7-74b4-d02b-66e1-e428-2e8.ngrok-free.app/predict";
 
 
 const ScanUpload: React.FC = () => {
