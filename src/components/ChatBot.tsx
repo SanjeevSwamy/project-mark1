@@ -67,7 +67,7 @@ const ChatBot: React.FC = () => {
         className="bg-cyan-600 text-white p-3 rounded-full shadow-lg hover:bg-cyan-700 transition"
         aria-label={open ? "Close chat" : "Open chat"}
       >
-        {open ? <CloseIcon /> : 'Chat'}
+        {open ? <CloseIcon /> : 'Chat With Me'}
       </button>
 
       {/* Chat Window */}
