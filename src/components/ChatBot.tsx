@@ -64,7 +64,7 @@ const ChatBot: React.FC = () => {
       {/* Floating Chat Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="bg-cyan-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-cyan-700 transition min-w-[10rem]"
+        className="bg-cyan-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-cyan-700 transition min-w-[8rem]"
         aria-label={open ? "Close chat" : "Open chat"}
       >
         {open ? <CloseIcon /> : 'Chat With Gauss'}
