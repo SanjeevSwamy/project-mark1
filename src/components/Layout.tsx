@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import ChatBot from './ChaBot'; // <-- Match file name exactly!
+import ChatBot from './ChatBot'; // <-- Match file name exactly!
 import { useAuth } from '../context/AuthContext';
 
 const Layout: React.FC = () => {
