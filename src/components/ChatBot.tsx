@@ -61,14 +61,14 @@ const ChatBot: React.FC = () => {
 
   return (
     <div className={`fixed bottom-4 right-4 z-50 ${open ? 'w-80' : 'w-auto'}`}>
-      {/* Floating Chat Button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="bg-cyan-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-cyan-700 transition min-w-[8rem]"
-        aria-label={open ? "Close chat" : "Open chat"}
-      >
-        {open ? <CloseIcon /> : 'Chat With Gauss'}
-      </button>
+{/* Floating Chat Button */}
+<button
+onClick={() => setOpen(!open)}
+className="bg-cyan-600 text-white p-3 rounded-full shadow-lg hover:bg-cyan-700 transition"
+aria-label={open ? "Close chat" : "Open chat"}
+>
+{open ? <CloseIcon /> : 'Chat With Me'}
+</button>
 
       {/* Chat Window */}
       {open && (
