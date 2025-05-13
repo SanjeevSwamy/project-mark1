@@ -8,7 +8,8 @@ import {
   Settings,
   Wifi,
   Menu,
-  X
+  X,
+  FolderOpen
 } from 'lucide-react';
 
 const navItems = [
@@ -17,6 +18,7 @@ const navItems = [
   { name: 'Results', icon: <FileType2 size={20} />, path: '/results/recent' },
   { name: 'Doctors', icon: <Users size={20} />, path: '/doctors' },
   { name: 'Smart Devices', icon: <Wifi size={20} />, path: '/devices' },
+  { name: 'Upload/Retrieve Files', icon: <FolderOpen size={20} />, path: '/upload-scan' }, // <-- New link!
   { name: 'Settings', icon: <Settings size={20} />, path: '/settings' },
 ];
 
