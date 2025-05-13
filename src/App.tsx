@@ -11,7 +11,7 @@ import Doctors from './pages/Doctors';
 import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 import ConnectDevices from './pages/ConnectDevices';
-import FileUpload from './pages/FileUpload'; // <-- Add this import if your upload page is here
+import FileUpload from './components/FileUpload'; // <-- Add this import if your upload page is here
 
 // Layout
 import Layout from './components/Layout';
