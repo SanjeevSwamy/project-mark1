@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient"; // Make sure this points to your Supabase client setup!
 
+const BUCKET_NAME = "user-files"; // <-- REPLACE with your actual bucket name!
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".dcm", ".pdf"];
 
 function isAllowed(filename) {
@@ -13,7 +14,6 @@ export default function FileUpload() {
   const [error, setError] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
-  // Fetch all uploaded files on mount
   useEffect(() => {
     fetchFiles();
     // eslint-disable-next-line
@@ -31,7 +31,7 @@ export default function FileUpload() {
 
     const { data, error: uploadError } = await supabase
       .storage
-      .from("your-bucket-name") // <-- replace with your actual bucket name!
+      .from(BUCKET_NAME)
       .upload(`uploads/${Date.now()}_${file.name}`, file, { upsert: false });
 
     if (uploadError) return setError(uploadError.message);
@@ -39,7 +39,7 @@ export default function FileUpload() {
     // Get public URL (if bucket is public)
     const { data: urlData } = supabase
       .storage
-      .from("your-bucket-name")
+      .from(BUCKET_NAME)
       .getPublicUrl(data.path);
 
     setUploadUrl(urlData.publicUrl);
@@ -49,7 +49,7 @@ export default function FileUpload() {
   const fetchFiles = async () => {
     const { data, error } = await supabase
       .storage
-      .from("your-bucket-name")
+      .from(BUCKET_NAME)
       .list("uploads");
     if (!error && data) setUploadedFiles(data);
   };
@@ -78,11 +78,20 @@ export default function FileUpload() {
         {uploadedFiles.map(f => (
           <li key={f.name}>
             {f.name}
-            {/* Optionally, add a download/view link if public */}
+            {/* Add a download/view link if public */}
+            {f.name && (
+              <a
+                href={supabase.storage.from(BUCKET_NAME).getPublicUrl(`uploads/${f.name}`).data.publicUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 text-cyan-700 underline"
+              >
+                View
+              </a>
+            )}
           </li>
         ))}
       </ul>
     </div>
   );
 }
-
