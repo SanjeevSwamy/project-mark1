@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
-const BUCKET_NAME = "user-files";
+const BUCKET_NAME = "user-files"; // Must match Supabase bucket name exactly
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".dcm", ".pdf"];
 
 function isAllowed(filename: string) {
@@ -22,8 +22,8 @@ const FileUpload: React.FC = () => {
       setUserId(user?.id || null);
     };
     getUser();
-    fetchFiles();
-  }, []);
+    if (userId) fetchFiles();
+  }, [userId]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
@@ -46,7 +46,8 @@ const FileUpload: React.FC = () => {
 
     setLoading(true);
     try {
-      const filePath = `uploads/${userId}/${Date.now()}_${file.name}`;
+      // Remove "uploads/" from path structure
+      const filePath = `${userId}/${Date.now()}_${file.name}`;
       
       const { data, error: uploadError } = await supabase.storage
         .from(BUCKET_NAME)
@@ -67,13 +68,11 @@ const FileUpload: React.FC = () => {
     }
   };
 
-  const fetchFiles = async () => {
-    if (!userId) return;
-    
+  const fetchFiles = async () => {    
     try {
       const { data, error } = await supabase.storage
         .from(BUCKET_NAME)
-        .list(`uploads/${userId}`);
+        .list(`${userId}`);
 
       if (!error) setUploadedFiles(data || []);
     } catch (err) {
@@ -129,7 +128,7 @@ const FileUpload: React.FC = () => {
               <a
                 href={supabase.storage
                   .from(BUCKET_NAME)
-                  .getPublicUrl(`uploads/${userId}/${f.name}`).data.publicUrl}
+                  .getPublicUrl(`${userId}/${f.name}`).data.publicUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-cyan-700 hover:underline text-sm"
@@ -145,3 +144,4 @@ const FileUpload: React.FC = () => {
 };
 
 export default FileUpload;
+
