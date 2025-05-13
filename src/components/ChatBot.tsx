@@ -7,7 +7,7 @@ interface Message {
   role: 'user' | 'assistant';
 }
 
-const API_URL = 'https://46c0-101-0-62-160.ngrok-free.app/chat'; // Change to your backend URL if needed
+const API_URL = 'https://46c0-101-0-62-160.ngrok-free.app/chat'; // Change this to your backend URL if needed
 
 const ChatBot: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -16,7 +16,6 @@ const ChatBot: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll to bottom when messages update
   useEffect(() => {
     if (open && messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -26,7 +25,6 @@ const ChatBot: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || loading) return;
 
-    // Add user message
     setMessages(prev => [...prev, { content: input, role: 'user' }]);
     setLoading(true);
 
@@ -84,15 +82,18 @@ const ChatBot: React.FC = () => {
             {messages.map((msg: Message, idx: number) => (
               <div
                 key={idx}
-                className={`mb-3 p-2 rounded-lg ${
-                  msg.role === 'user'
-                    ? 'bg-cyan-100 dark:bg-cyan-900 ml-auto max-w-[80%]'
-                    : 'bg-gray-100 dark:bg-gray-700 max-w-[90%]'
-                }`}
+                className={`mb-3 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <p className="text-sm text-gray-800 dark:text-gray-200">
-                  {msg.content}
-                </p>
+                <div
+                  className={`p-2 rounded-lg shadow
+                    ${msg.role === 'user'
+                      ? 'bg-cyan-600 text-white dark:bg-cyan-500'
+                      : 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'}
+                    max-w-[80%] break-words
+                  `}
+                >
+                  <p className="text-sm">{msg.content}</p>
+                </div>
               </div>
             ))}
             {loading && (
