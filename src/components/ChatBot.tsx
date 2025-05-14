@@ -7,7 +7,7 @@ interface Message {
   role: 'user' | 'assistant';
 }
 
-const API_URL = 'https://0a6f-101-0-62-160.ngrok-free.app/chat'; // Change this to your backend URL if needed
+const API_URL = 'https://7f29-2401-4900-22e7-74b4-dd6a-aa30-4470-34a7.ngrok-free.app/chat'; // Change this to your backend URL if needed
 
 const ChatBot: React.FC = () => {
   const [open, setOpen] = useState(false);
